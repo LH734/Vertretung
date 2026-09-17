@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FCFBF6">
+  <title>Spieleraum · Gruppen</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233FB8AF'/%3E%3Cpath d='M8 24l3-1 12-12-2-2L9 21z' fill='%23fff' stroke='%232E1A3B' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Mulish:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/stil.css?v=13">
+</head>
+<body class="lehrer">
+  <div class="pult nur-anmeldung" id="pult">
+    <main class="buehne" id="buehne">
+      <!-- Anmeldung -->
+      <div id="g-anmelden" class="anmelden">
+        <div class="notiz klebestreifen anmelde-zettel">
+          <h1>Gruppenmodus</h1>
+          <p class="unter">Mehrere kleine Gruppen spielen gleichzeitig, jede in ihrem eigenen Raum. Du steuerst alle von hier aus.</p>
+          <form id="g-form" autocomplete="off">
+            <label class="feld">
+              <span>Wie viele Gruppen?</span>
+              <input class="eingabe" type="number" id="g-anzahl" min="2" max="10" value="4" required>
+            </label>
+            <label class="feld" id="g-passwort-feld" hidden>
+              <span>Passwort</span>
+              <input class="eingabe" type="password" id="g-passwort" autocomplete="current-password">
+            </label>
+            <p class="anmelde-fehler" id="g-fehler" role="alert"></p>
+            <button class="knopf haupt gross" type="submit" id="g-oeffnen">Gruppen öffnen</button>
+          </form>
+          <a class="lehrerlink" href="/">Zurück zur Startseite</a>
+        </div>
+      </div>
+
+      <!-- Übersicht -->
+      <div id="g-uebersicht" hidden>
+        <div class="g-kopf">
+          <h1><span class="unterstrich">Gruppen</span></h1>
+          <p class="b-anleitung" style="margin:0">Öffne <span class="adresse" id="g-adresse"></span> und gib den Code deiner Gruppe ein.</p>
+        </div>
+        <div class="gruppenraster" id="g-raster"></div>
+      </div>
+    </main>
+
+    <aside class="regie" id="regie" aria-label="Gruppenregie">
+      <section>
+        <h2>Alle Gruppen <small id="g-verbindung">verbinde …</small></h2>
+        <div class="knopfreihe">
+          <button class="knopf haupt grossknopf voll" type="button" id="g-start">Alle starten</button>
+          <button class="knopf gold grossknopf voll" type="button" id="g-pause">Alle pausieren</button>
+          <button class="knopf" type="button" id="g-ueberspringen">Alle überspringen</button>
+          <button class="knopf" type="button" id="g-beenden">Alle beenden</button>
+          <button class="knopf voll" type="button" id="g-hinzufuegen">+ Gruppe hinzufügen</button>
+        </div>
+        <p class="status">Einzelne Gruppen steuerst du über die Knöpfe auf ihrer Karte. „Regie“ öffnet die volle Einzelregie mit Spielerliste in einem neuen Tab.</p>
+      </section>
+      <section>
+        <h2>Spiel für alle</h2>
+        <div id="g-einstellungen"></div>
+      </section>
+    </aside>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/gemeinsam.js?v=13"></script>
+  <script src="/qr.js?v=13"></script>
+  <script src="/einstellungen.js?v=13"></script>
+  <script src="/gruppen.js?v=13"></script>
+</body>
+</html>
