@@ -1,0 +1,863 @@
+/* Spieleraum · Leitbild „Skizzenbuch“
+   Kariertes Papier, Tinte, Buntstift. Hell, kontrastreich, beamertauglich. */
+
+:root {
+  --papier: #FCFBF6;
+  --raster: rgba(198, 210, 228, 0.55);
+  --tinte: #2E1A3B;
+  --tinte-weich: rgba(46, 26, 59, 0.72);
+  --rot: #E94F4F;
+  --rot-dunkel: #C73A3A;
+  --gold: #F5CB5E;
+  --creme: #FDFCE4;
+  --grau: #9696A8;
+  --gruen: #3F9A4A;
+  --weiss: #FFFFFF;
+  --t-gold: #F5CB5E;
+  --t-tuerkis: #3FB8AF;
+  --t-rot: #E94F4F;
+  --t-violett: #8B5CF6;
+
+  --schrift-hand: "Love Ya Like A Sister", "Chalkboard SE", "Comic Sans MS", "Segoe Print", "Bradley Hand", cursive;
+  --schrift-text: "Mulish", "Segoe UI", "Helvetica Neue", Arial, system-ui, -apple-system, sans-serif;
+
+  /* unregelmäßige, „von Hand“ gezogene Ecken */
+  --hand-a: 255px 18px 225px 16px / 16px 225px 18px 255px;
+  --hand-b: 18px 220px 20px 240px / 230px 16px 240px 18px;
+  --hand-c: 12px 140px 14px 160px / 150px 12px 160px 14px;
+
+  --kurz: 260ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: var(--tinte);
+  font-family: var(--schrift-text);
+  font-size: 18px;
+  line-height: 1.4;
+  background-color: var(--papier);
+  background-image:
+    linear-gradient(var(--raster) 1px, transparent 1px),
+    linear-gradient(90deg, var(--raster) 1px, transparent 1px);
+  background-size: 5mm 5mm;
+  background-attachment: fixed;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .hand {
+  font-family: var(--schrift-hand);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+button, input, textarea, select { font: inherit; color: inherit; }
+
+[hidden] { display: none !important; }
+
+.unsichtbar {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Textmarker und Unterstreichungen ---------- */
+.marker {
+  background: linear-gradient(transparent 55%, rgba(245, 203, 94, 0.85) 55%, rgba(245, 203, 94, 0.85) 90%, transparent 90%);
+  padding: 0 0.15em;
+}
+.unterstrich {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 40 2, 80 9, 120 5 S 180 3, 198 6' fill='none' stroke='%23E94F4F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 0.35em;
+  background-position: 0 100%;
+  padding-bottom: 0.2em;
+}
+
+/* ---------- Knöpfe: Tinte, versetzter Schatten ---------- */
+.knopf {
+  appearance: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.45em;
+  min-height: 48px;
+  padding: 0.55em 1.1em;
+  border: 2.5px solid var(--tinte);
+  border-radius: var(--hand-c);
+  background: var(--weiss);
+  color: var(--tinte);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2px 3px 0 var(--tinte);
+  transition: transform 90ms ease, box-shadow 90ms ease, background-color 120ms ease;
+  touch-action: manipulation;
+  user-select: none;
+  text-decoration: none;
+}
+.knopf:hover { background: var(--creme); }
+.knopf:active { transform: translate(2px, 3px); box-shadow: 0 0 0 var(--tinte); }
+.knopf:focus-visible { outline: 3px dashed var(--rot); outline-offset: 3px; }
+.knopf[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: 2px 3px 0 var(--tinte); }
+.knopf.haupt { background: var(--rot); color: var(--weiss); }
+.knopf.haupt:hover { background: var(--rot-dunkel); }
+.knopf.gold { background: var(--gold); }
+.knopf.klein { min-height: 36px; padding: 0.25em 0.7em; font-size: 0.9em; box-shadow: 1.5px 2px 0 var(--tinte); border-width: 2px; }
+.knopf.gross { font-size: 1.35em; padding: 0.6em 1.4em; font-family: var(--schrift-hand); font-weight: 400; }
+.knopf.an { background: var(--tinte); color: var(--creme); }
+
+/* ---------- Eingabefelder: Linie auf Papier ---------- */
+.feld { display: block; }
+.feld > span {
+  display: block;
+  font-family: var(--schrift-hand);
+  font-size: 1.15em;
+  margin-bottom: 0.15em;
+}
+.eingabe {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.45em 0.7em;
+  border: 2.5px solid var(--tinte);
+  border-radius: var(--hand-b);
+  background: var(--weiss);
+  font-size: 1.15em;
+  font-weight: 700;
+  outline: none;
+}
+.eingabe:focus { border-color: var(--rot); box-shadow: 0 0 0 4px rgba(233, 79, 79, 0.18); }
+.eingabe::placeholder { color: var(--grau); font-weight: 600; }
+.eingabe[disabled] { background: #F2F1EA; color: var(--grau); }
+
+/* ---------- Papierelemente ---------- */
+.blatt {
+  position: relative;
+  background: var(--weiss);
+  box-shadow: 0 1px 0 rgba(46, 26, 59, 0.08), 4px 8px 18px rgba(46, 26, 59, 0.14);
+}
+.notiz {
+  position: relative;
+  background: var(--creme);
+  border: 2px solid rgba(46, 26, 59, 0.85);
+  border-radius: var(--hand-a);
+  padding: 1.1rem 1.3rem;
+}
+.klebestreifen::before, .klebestreifen::after {
+  content: "";
+  position: absolute;
+  width: 88px; height: 26px;
+  background: rgba(245, 203, 94, 0.55);
+  border-left: 2px dotted rgba(255, 255, 255, 0.7);
+  border-right: 2px dotted rgba(255, 255, 255, 0.7);
+  z-index: 2;
+  pointer-events: none;
+}
+.klebestreifen::before { top: -12px; left: 18px; transform: rotate(-8deg); }
+.klebestreifen::after { top: -12px; right: 18px; transform: rotate(7deg); }
+
+/* Papierkarte fährt von unten herein */
+.herein { animation: herein var(--kurz) cubic-bezier(.2, .8, .25, 1) both; }
+@keyframes herein {
+  from { transform: translateY(46px) rotate(var(--dreh, 0deg)); opacity: 0; }
+  to { transform: translateY(0) rotate(var(--dreh, 0deg)); opacity: 1; }
+}
+
+/* ---------- Teams ---------- */
+.teampunkt {
+  display: inline-block; width: 0.8em; height: 0.8em; margin-right: 0.35em;
+  border: 2px solid var(--tinte); border-radius: 50% 45% 55% 48%;
+  background: var(--team); vertical-align: -0.05em;
+}
+
+/* ---------- Zeitkreis ---------- */
+.zeitkreis { position: relative; width: 84px; height: 84px; flex: none; }
+.zeitkreis svg { width: 100%; height: 100%; overflow: visible; }
+.zk-spur { fill: none; stroke: var(--grau); stroke-width: 2.2; stroke-dasharray: 3 5; stroke-linecap: round; opacity: 0.7; }
+.zk-bogen { fill: none; stroke: var(--tinte); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.zeitkreis.knapp .zk-bogen { stroke: var(--rot); }
+.zk-zahl {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--schrift-hand);
+  font-size: 34px; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.zeitkreis.knapp .zk-zahl { color: var(--rot); }
+
+/* ---------- Meldung ---------- */
+#meldung {
+  position: fixed; left: 50%; bottom: 22px; z-index: 90;
+  transform: translate(-50%, 140%);
+  max-width: min(92vw, 560px);
+  padding: 0.7em 1.2em;
+  background: var(--tinte); color: var(--creme);
+  border-radius: var(--hand-c);
+  font-weight: 700;
+  box-shadow: 3px 4px 0 var(--rot);
+  transition: transform var(--kurz) ease;
+  pointer-events: none;
+}
+#meldung.sichtbar { transform: translate(-50%, 0); }
+#meldung.fehler { box-shadow: 3px 4px 0 var(--gold); }
+
+/* ---------- Pause ---------- */
+.pause-schicht {
+  position: fixed; inset: 0; z-index: 80;
+  display: grid; place-items: center;
+  background: rgba(252, 251, 246, 0.86);
+  backdrop-filter: blur(2px);
+}
+.pause-schicht .pause-zettel {
+  --dreh: -3deg;
+  transform: rotate(-3deg);
+  background: var(--gold);
+  border: 3px solid var(--tinte);
+  border-radius: var(--hand-a);
+  padding: 0.3em 1.2em 0.4em;
+  text-align: center;
+  box-shadow: 6px 8px 0 var(--tinte);
+}
+.pause-schicht h2 { font-size: clamp(64px, 14vw, 220px); line-height: 1; }
+.pause-schicht p { margin: 0 0 0.5em; font-weight: 800; font-size: clamp(18px, 2.2vw, 32px); }
+
+/* =====================================================================
+   KINDER-ANSICHT
+   ===================================================================== */
+.kind-kopf {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px;
+  min-height: 60px;
+}
+.logo {
+  font-family: var(--schrift-hand);
+  font-size: 26px;
+  display: inline-flex; align-items: center; gap: 8px;
+  white-space: nowrap;
+}
+.logo svg { width: 34px; height: 34px; }
+.kind-kopf .wer { margin-left: auto; font-weight: 800; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.kind-kopf .wer .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 40vw; }
+.punktestand { font-family: var(--schrift-hand); font-size: 26px; white-space: nowrap; }
+
+.ansicht { padding: 0 16px 24px; }
+
+/* Beitritt */
+.beitritt {
+  min-height: calc(100dvh - 60px);
+  display: grid; place-items: center;
+  padding: 16px 0 40px;
+}
+.beitritt-zettel {
+  --dreh: -1.2deg;
+  width: min(100%, 460px);
+  transform: rotate(-1.2deg);
+  padding: 34px 28px 26px;
+}
+.beitritt-zettel h1 { font-size: clamp(40px, 9vw, 58px); line-height: 1; margin-bottom: 6px; }
+.beitritt-zettel .unter { margin: 0 0 22px; color: var(--tinte-weich); font-weight: 600; }
+.beitritt-zettel form { display: grid; gap: 16px; }
+.code-eingabe {
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-family: var(--schrift-hand);
+  font-size: 34px !important;
+  text-align: center;
+  padding-left: 0.6em !important;
+}
+.datenschutz {
+  margin: 18px 0 0; font-size: 15px; color: var(--tinte-weich);
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.datenschutz svg { flex: none; width: 22px; height: 22px; margin-top: 1px; }
+
+/* Lobby */
+.lobby { max-width: 900px; margin: 0 auto; padding-top: 10px; }
+.lobby h1 { font-size: clamp(36px, 7vw, 56px); line-height: 1.05; }
+.lobby .unter { font-size: 20px; margin: 6px 0 22px; font-weight: 600; }
+.namensschilder { display: flex; flex-wrap: wrap; gap: 10px 12px; margin: 0; padding: 0; list-style: none; }
+.namensschild {
+  background: var(--weiss);
+  border: 2px solid var(--tinte);
+  padding: 4px 12px;
+  border-radius: var(--hand-c);
+  font-weight: 800;
+  transform: rotate(var(--r, 0deg));
+}
+.namensschild.ich { background: var(--gold); }
+.namensschild.weg { opacity: 0.45; border-style: dashed; }
+.teamwahl { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0 26px; }
+.teamknopf {
+  appearance: none; cursor: pointer;
+  border: 2.5px solid var(--tinte);
+  border-radius: var(--hand-b);
+  background: var(--weiss);
+  padding: 12px 14px 12px 50px;
+  position: relative;
+  text-align: left;
+  font-family: var(--schrift-hand);
+  font-size: 22px;
+  min-height: 60px;
+  overflow-wrap: anywhere;
+}
+.teamknopf::before {
+  content: ""; position: absolute; left: 14px; top: 50%;
+  width: 24px; height: 24px; margin-top: -12px;
+  background: var(--team); border: 2px solid var(--tinte);
+  border-radius: 48% 52% 45% 55%;
+}
+.teamknopf small { display: block; font-family: var(--schrift-text); font-size: 14px; color: var(--tinte-weich); }
+.teamknopf.gewaehlt { background: var(--team); box-shadow: 3px 4px 0 var(--tinte); }
+.teamknopf.gewaehlt::before { background: var(--weiss); }
+
+/* Spielkopf mit Timer und Wortmuster */
+.spielkopf {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 10px;
+  min-height: 84px;
+}
+.spielkopf .info { min-width: 0; flex: 1; }
+.rundenzeile { font-family: var(--schrift-hand); font-size: 20px; color: var(--tinte-weich); }
+.hinweiszeile { font-weight: 700; font-size: 17px; overflow: hidden; text-overflow: ellipsis; }
+
+.muster {
+  display: flex; flex-wrap: wrap; align-items: flex-end;
+  gap: 0.18em;
+  font-family: var(--schrift-hand);
+  font-size: 34px;
+  line-height: 1.1;
+  min-height: 1.3em;
+}
+.muster .bs {
+  display: inline-block; min-width: 0.72em; text-align: center;
+  border-bottom: 3px solid var(--tinte);
+  padding: 0 0.04em;
+}
+.muster .bs.leer { color: transparent; }
+.muster .bs.offen-hinweis { color: var(--rot); }
+.muster .lu { width: 0.55em; }
+.muster .zz { border: 0; }
+.muster .anzahl { font-family: var(--schrift-text); font-size: 0.45em; color: var(--grau); margin-left: 0.4em; font-weight: 800; align-self: center; }
+.muster.klar .bs { border-bottom-color: var(--gold); }
+
+/* Zeichnen: Aufbau */
+.zeichnen-raster {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 16px;
+  align-items: start;
+}
+.blattrahmen { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.zeichenblatt {
+  position: relative;
+  width: min(100%, calc((100dvh - 190px) * 4 / 3));
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  transform: rotate(-0.4deg);
+}
+.zeichenblatt canvas {
+  position: absolute; inset: 0;
+  display: block; width: 100%; height: 100%;
+  background: var(--weiss);
+  touch-action: none;
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
+}
+.zeichenblatt.darf-zeichnen canvas { cursor: crosshair; }
+/* Zeichner auf Tablet und Laptop: Werkzeuge senkrecht neben dem Blatt */
+@media (min-width: 861px) {
+  .ist-zeichner .blattrahmen { flex-direction: row; align-items: flex-start; justify-content: center; }
+  .ist-zeichner .zeichenblatt { width: min(calc(100% - 124px), calc((100dvh - 190px) * 4 / 3)); }
+  .ist-zeichner .werkzeuge { flex-direction: column; flex-wrap: nowrap; width: 112px; padding: 10px 8px; gap: 10px; order: -1; }
+  .ist-zeichner .werkzeuge .gruppe { display: grid; grid-template-columns: repeat(2, 44px); gap: 6px; justify-items: center; }
+}
+
+/* Werkzeugleiste */
+.werkzeuge {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 8px 14px;
+  padding: 8px 12px;
+  background: var(--creme);
+  border: 2px solid var(--tinte);
+  border-radius: var(--hand-a);
+  max-width: 100%;
+}
+.werkzeuge .gruppe { display: flex; align-items: center; gap: 6px; }
+.farbklecks {
+  appearance: none; cursor: pointer;
+  width: 38px; height: 38px;
+  border: 2.5px solid var(--tinte);
+  background: var(--farbe);
+  border-radius: 52% 48% 45% 55% / 50% 55% 45% 50%;
+  padding: 0;
+}
+.farbklecks.aktiv { box-shadow: 0 0 0 3px var(--papier), 0 0 0 6px var(--rot); transform: scale(1.06); }
+.werkzeug {
+  appearance: none; cursor: pointer;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 2px solid var(--tinte);
+  background: var(--weiss);
+  border-radius: var(--hand-c);
+  padding: 0;
+}
+.werkzeug svg { width: 26px; height: 26px; }
+.werkzeug.aktiv { background: var(--rot); color: var(--weiss); }
+.werkzeug .punkt { display: block; background: currentColor; border-radius: 50%; }
+
+/* Chat */
+.chatspalte {
+  display: flex; flex-direction: column;
+  height: calc(100dvh - 190px);
+  min-height: 320px;
+  background: var(--weiss);
+  border: 2px solid var(--tinte);
+  border-radius: var(--hand-b);
+  overflow: hidden;
+}
+.chatspalte h2 { font-size: 22px; padding: 8px 14px 4px; border-bottom: 2px dashed rgba(46, 26, 59, 0.25); }
+.chatliste {
+  flex: 1; overflow-y: auto; margin: 0; padding: 6px 12px; list-style: none;
+  font-size: 16px;
+  /* Linienpapier */
+  background-image: linear-gradient(transparent 27px, rgba(198, 210, 228, 0.7) 27px);
+  background-size: 100% 28px;
+  line-height: 28px;
+}
+.chatliste li { word-wrap: break-word; overflow-wrap: anywhere; }
+.chatliste b { font-weight: 800; }
+.chatliste .system { color: var(--tinte-weich); font-style: italic; }
+.chatliste .richtig { color: var(--gruen); font-weight: 800; }
+.chatliste .richtig::before { content: "✓ "; }
+.chatliste .nah { color: var(--rot); font-weight: 800; }
+.chatliste .intern { color: #6B5A7A; background: rgba(245, 203, 94, 0.25); }
+.chateingabe { display: flex; gap: 6px; padding: 8px; border-top: 2px dashed rgba(46, 26, 59, 0.25); }
+.chateingabe .eingabe { min-height: 46px; font-size: 17px; }
+.chateingabe .knopf { min-height: 46px; padding: 0 0.8em; }
+
+/* Karten über der Zeichenfläche */
+.ueberblatt {
+  position: absolute; inset: 0; z-index: 5;
+  display: grid; place-items: center;
+  background: rgba(252, 251, 246, 0.72);
+  padding: 12px;
+}
+.wahlkarte, .aufloesekarte, .wartekarte {
+  --dreh: 1deg;
+  transform: rotate(1deg);
+  background: var(--creme);
+  border: 2.5px solid var(--tinte);
+  border-radius: var(--hand-a);
+  padding: 18px 22px;
+  text-align: center;
+  box-shadow: 5px 6px 0 rgba(46, 26, 59, 0.9);
+  max-width: 94%;
+}
+.wahlkarte h2, .aufloesekarte h2, .wartekarte h2 { font-size: clamp(24px, 4vw, 36px); }
+.wahlknoepfe { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 14px; }
+.wahlknoepfe .knopf { font-family: var(--schrift-hand); font-weight: 400; font-size: 26px; }
+.aufloesekarte .wort { font-family: var(--schrift-hand); font-size: clamp(38px, 7vw, 80px); line-height: 1.05; margin: 4px 0 8px; }
+.aufloesekarte ul { list-style: none; margin: 8px 0 0; padding: 0; font-weight: 700; }
+.aufloesekarte li { display: flex; justify-content: space-between; gap: 24px; }
+.aufloesekarte li span:last-child { font-family: var(--schrift-hand); }
+
+/* Stadt, Land, Fluss (Kind) */
+.buchstabe {
+  display: grid; place-items: center;
+  width: 84px; height: 84px; flex: none;
+  font-family: var(--schrift-hand);
+  font-size: 58px; line-height: 1;
+  background: var(--gold);
+  border: 3px solid var(--tinte);
+  border-radius: 50% 46% 52% 48% / 48% 52% 46% 50%;
+  transform: rotate(-4deg);
+}
+.stoppband {
+  margin: 0 0 12px; padding: 8px 14px;
+  background: var(--rot); color: var(--weiss);
+  font-weight: 800; font-size: 20px;
+  border-radius: var(--hand-c);
+  transform: rotate(-0.5deg);
+}
+.slf-felder {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 22px;
+  max-width: 1000px;
+}
+.slf-feld > span { font-size: 22px; }
+.slf-feld .eingabe { font-size: 21px; }
+.slf-fuss { display: flex; align-items: center; gap: 16px; margin-top: 18px; flex-wrap: wrap; }
+.abgegeben { font-weight: 800; color: var(--gruen); font-size: 20px; }
+
+.auswertung h2 { font-size: clamp(30px, 5vw, 44px); }
+.antwortliste { list-style: none; margin: 10px 0 0; padding: 0; max-width: 900px; }
+.antwort {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 10px 4px;
+  border-bottom: 2px solid rgba(198, 210, 228, 0.9);
+}
+.antwort .wer { font-weight: 700; color: var(--tinte-weich); font-size: 15px; }
+.antwort .was { font-weight: 800; font-size: 22px; overflow-wrap: anywhere; }
+.antwort .was.leer { color: var(--grau); font-style: italic; font-weight: 600; }
+.antwort.ungueltig .was:not(.leer) { text-decoration: line-through; text-decoration-color: var(--rot); text-decoration-thickness: 3px; }
+.antwort .rechts { display: flex; align-items: center; gap: 8px; }
+.stempel {
+  font-family: var(--schrift-hand);
+  font-size: 18px;
+  padding: 0 8px;
+  border: 2px solid currentColor;
+  border-radius: 6px 14px 8px 12px;
+  transform: rotate(-4deg);
+  white-space: nowrap;
+}
+.stempel.ja { color: var(--gruen); }
+.stempel.nein { color: var(--rot); }
+.daumen {
+  appearance: none; cursor: pointer;
+  min-width: 52px; height: 44px;
+  border: 2px solid var(--tinte);
+  background: var(--weiss);
+  border-radius: var(--hand-c);
+  font-weight: 800;
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 0 8px;
+}
+.daumen svg { width: 22px; height: 22px; }
+.daumen.gewaehlt.hoch { background: #CDEBC8; }
+.daumen.gewaehlt.runter { background: #F7C9C9; }
+.pkt { font-family: var(--schrift-hand); font-size: 24px; min-width: 2.2em; text-align: right; }
+
+/* Ranglisten */
+.rangliste { list-style: none; margin: 0; padding: 0; counter-reset: platz; }
+.rangliste li {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 10px;
+  padding: 6px 4px;
+  border-bottom: 2px solid rgba(198, 210, 228, 0.9);
+  font-weight: 800;
+}
+.rangliste .platz { font-family: var(--schrift-hand); color: var(--grau); }
+.rangliste .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rangliste .p { font-family: var(--schrift-hand); }
+.rangliste li.erster { background: linear-gradient(transparent 20%, rgba(245, 203, 94, 0.75) 20%, rgba(245, 203, 94, 0.75) 85%, transparent 85%); }
+.rangliste li.erster .platz { color: var(--tinte); }
+.rangliste li.ich .n { text-decoration: underline wavy var(--rot); text-underline-offset: 4px; }
+.rangliste li.weg { opacity: 0.5; }
+
+.endkarte { max-width: 720px; margin: 20px auto; }
+.endkarte h1 { font-size: clamp(40px, 8vw, 70px); text-align: center; }
+
+/* ---------- Kind: Tablet hochkant und Handy ---------- */
+@media (max-width: 860px) {
+  .zeichnen-raster { grid-template-columns: minmax(0, 1fr); }
+  .zeichenblatt, .ist-zeichner .zeichenblatt { width: 100%; }
+  .chatspalte { height: 300px; }
+  .slf-felder { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  body { font-size: 17px; }
+  .ansicht { padding: 0 12px 20px; }
+  .kind-kopf { padding: 8px 12px; }
+  .logo span { display: none; }
+  .zeitkreis { width: 64px; height: 64px; }
+  .zk-zahl { font-size: 26px; }
+  .buchstabe { width: 64px; height: 64px; font-size: 44px; }
+  .muster { font-size: 26px; }
+  .farbklecks { width: 34px; height: 34px; }
+  .werkzeug { width: 40px; height: 40px; }
+  .antwort { grid-template-columns: minmax(0, 1fr); }
+  .antwort .rechts { justify-content: flex-end; }
+  .spielkopf { gap: 10px; }
+  .teamwahl { grid-template-columns: minmax(0, 1fr); }
+  .ueberblatt { padding: 6px; }
+  .wahlkarte, .aufloesekarte, .wartekarte { padding: 10px 12px; box-shadow: 3px 4px 0 rgba(46, 26, 59, 0.9); }
+  .wahlkarte h2, .aufloesekarte h2, .wartekarte h2 { font-size: 20px; }
+  .wahlknoepfe { gap: 6px; margin-top: 8px; }
+  .wahlknoepfe .knopf { font-size: 19px; min-height: 40px; padding: 0.25em 0.8em; }
+  .aufloesekarte .wort { font-size: 34px; }
+  .aufloesekarte ul { font-size: 15px; }
+}
+
+/* =====================================================================
+   LEHRKRAFT: BÜHNE UND REGIE (ausgelegt für 1920 × 1080)
+   ===================================================================== */
+.pult {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  height: 100vh;
+  height: 100dvh;
+}
+.pult.nur-buehne { grid-template-columns: minmax(0, 1fr); }
+
+.buehne {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 32px;
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+
+/* Code-Ecke */
+.codeecke {
+  position: absolute; top: 18px; right: 22px; z-index: 20;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--weiss);
+  border: 2.5px solid var(--tinte);
+  border-radius: var(--hand-a);
+  padding: 8px 12px 8px 16px;
+  box-shadow: 3px 4px 0 var(--tinte);
+  transform: rotate(1.2deg);
+}
+.codeecke .qr { width: 88px; height: 88px; }
+.codeecke .qr svg { width: 100%; height: 100%; display: block; }
+.codeecke .klein-text { font-weight: 800; font-size: 15px; color: var(--tinte-weich); }
+.codeecke .code { font-family: var(--schrift-hand); font-size: 44px; letter-spacing: 0.12em; line-height: 1; }
+.codeecke.gross { display: none; }
+
+/* Lobby auf der Bühne */
+.b-lobby { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: start; height: 100%; }
+.b-lobby h1 { font-size: clamp(56px, 6vw, 110px); line-height: 1; }
+.b-anleitung { font-size: clamp(24px, 2vw, 36px); font-weight: 700; margin: 18px 0 26px; line-height: 1.5; }
+.b-anleitung ol { margin: 0; padding-left: 1.3em; }
+.b-anleitung .adresse { font-family: var(--schrift-hand); font-weight: 400; overflow-wrap: anywhere; }
+.b-codeblatt {
+  --dreh: 2deg;
+  transform: rotate(2deg);
+  background: var(--weiss);
+  padding: 22px 26px 18px;
+  text-align: center;
+  box-shadow: 0 1px 0 rgba(46, 26, 59, 0.08), 6px 10px 24px rgba(46, 26, 59, 0.16);
+}
+.b-codeblatt .qr { width: clamp(220px, 20vw, 380px); aspect-ratio: 1; margin: 0 auto; }
+.b-codeblatt .qr svg { width: 100%; height: 100%; display: block; }
+.b-codeblatt .code { font-family: var(--schrift-hand); font-size: clamp(80px, 8vw, 150px); letter-spacing: 0.14em; line-height: 1; margin-top: 8px; }
+.b-codeblatt .klein-text { font-weight: 800; font-size: 22px; }
+.b-lobby .namensschilder { gap: 14px 16px; }
+.b-lobby .namensschild { font-size: clamp(22px, 1.7vw, 34px); padding: 4px 16px; }
+.b-zaehler { font-family: var(--schrift-hand); font-size: 34px; margin: 0 0 12px; }
+.b-teams { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.b-team { border-top: 8px solid var(--team); padding-top: 6px; }
+.b-team h3 { font-size: 30px; }
+.b-team .namensschilder { gap: 8px; }
+.b-team .namensschild { font-size: 22px; }
+
+/* Bühne: Spielkopf */
+.b-kopf {
+  display: flex; align-items: center; gap: 28px;
+  padding-right: 250px;
+  min-height: 150px;
+}
+.b-kopf .zeitkreis { width: 140px; height: 140px; }
+.b-kopf .zk-zahl { font-size: 56px; }
+.b-kopf .muster { font-size: 64px; gap: 0.2em; }
+.b-kopf .muster .bs { border-bottom-width: 5px; }
+.b-kopf .rundenzeile { font-size: 34px; }
+.b-kopf .hinweiszeile { font-size: 30px; }
+.b-kopf .buchstabe { width: 140px; height: 140px; font-size: 100px; border-width: 4px; }
+
+.b-inhalt { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 28px; }
+.b-blattrahmen { position: relative; display: grid; place-items: center; min-height: 0; }
+.b-blattrahmen .zeichenblatt { width: min(100%, calc((100dvh - 220px) * 4 / 3)); }
+.b-seite { display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+.b-tafel h2 { font-size: 40px; margin-bottom: 4px; }
+.b-tafel .rangliste li { font-size: 34px; padding: 4px; }
+.b-tafel .rangliste.lang li { font-size: 26px; }
+.b-tafel .rangliste .teampunkt { width: 0.65em; height: 0.65em; }
+.b-tafel .rangliste.teamliste li { font-size: 30px; }
+.b-feed { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.b-feed .chatliste { font-size: 24px; line-height: 38px; background-size: 100% 38px; background-image: linear-gradient(transparent 37px, rgba(198, 210, 228, 0.7) 37px); }
+
+.b-karte { font-size: 1.6em; }
+.b-karte .wort { font-size: clamp(70px, 7vw, 130px); }
+
+/* SLF auf der Bühne */
+.b-kategorien { display: flex; flex-wrap: wrap; gap: 14px 18px; margin: 10px 0 20px; padding: 0; list-style: none; }
+.b-kategorien li {
+  font-family: var(--schrift-hand);
+  font-size: clamp(30px, 2.4vw, 46px);
+  padding: 2px 18px;
+  background: var(--weiss);
+  border: 2.5px solid var(--tinte);
+  border-radius: var(--hand-b);
+  transform: rotate(var(--r, 0deg));
+}
+.b-fortschritt { font-size: 34px; font-weight: 800; margin: 8px 0 12px; }
+.b-fertige .namensschild { font-size: 24px; }
+.b-fertige .namensschild.fertig { background: #CDEBC8; }
+.b-auswertung { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.b-auswertung h2 { font-size: clamp(50px, 4.4vw, 80px); line-height: 1.05; }
+.b-auswertung .katzaehler { font-family: var(--schrift-hand); font-size: 30px; color: var(--tinte-weich); }
+.b-auswertung .antwortliste {
+  max-width: none; flex: 1; overflow-y: auto;
+  columns: 2 520px; column-gap: 40px;
+}
+.b-auswertung .antwort { break-inside: avoid; font-size: 1.3em; padding: 8px 4px; }
+.b-auswertung .antwort .was { font-size: 34px; }
+.b-auswertung .antwort .wer { font-size: 22px; }
+.b-auswertung .pkt { font-size: 38px; }
+.urteil {
+  appearance: none; cursor: pointer;
+  font-family: var(--schrift-hand);
+  font-size: 26px;
+  min-width: 128px; min-height: 52px;
+  border: 3px solid currentColor;
+  border-radius: 8px 18px 10px 16px;
+  background: var(--weiss);
+  transform: rotate(-3deg);
+}
+.urteil.ja { color: var(--gruen); }
+.urteil.nein { color: var(--rot); }
+.urteil:hover { background: var(--creme); }
+.nur-buehne .urteil { pointer-events: none; }
+.stimmen { font-weight: 800; font-size: 22px; color: var(--tinte-weich); white-space: nowrap; }
+.b-navi { display: flex; gap: 16px; justify-content: flex-end; padding-top: 12px; }
+.b-navi .knopf { font-size: 26px; }
+.nur-buehne .b-navi { display: none; }
+
+.b-ende { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 50px; align-items: start; }
+.b-ende h1 { font-size: clamp(64px, 6vw, 120px); line-height: 1; }
+.b-ende .rangliste li { font-size: 38px; }
+.siegertreppe { display: flex; align-items: flex-end; gap: 14px; margin-top: 30px; }
+.stufe {
+  flex: 1; text-align: center;
+  border: 3px solid var(--tinte);
+  border-bottom: 0;
+  border-radius: var(--hand-c);
+  border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+  background: var(--weiss);
+  padding: 10px 6px 0;
+}
+.stufe .n { font-weight: 800; font-size: 30px; overflow-wrap: anywhere; }
+.stufe .p { font-family: var(--schrift-hand); font-size: 36px; }
+.stufe .z { font-family: var(--schrift-hand); font-size: 90px; line-height: 1; }
+.stufe.s1 { background: var(--gold); min-height: 480px; }
+.stufe.s2 { min-height: 370px; }
+.stufe.s3 { min-height: 290px; }
+#b-ende { flex: 1; display: flex; flex-direction: column; }
+#b-ende .b-ende { flex: 1; align-items: stretch; }
+#b-ende .b-ende > div:first-child { display: flex; flex-direction: column; }
+#b-ende .siegertreppe { flex: 1; margin-top: 50px; }
+#b-ende .b-tafel { padding-top: 130px; }
+
+/* Regie */
+.regie {
+  background: var(--creme);
+  border-left: 3px solid var(--tinte);
+  overflow-y: auto;
+  padding: 16px 18px 40px;
+  font-size: 16px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.regie h2 { font-size: 26px; line-height: 1; display: flex; align-items: baseline; gap: 10px; }
+.regie h2 small { font-family: var(--schrift-text); font-size: 13px; font-weight: 700; color: var(--tinte-weich); }
+.regie section { border-bottom: 2px dashed rgba(46, 26, 59, 0.3); padding-bottom: 16px; }
+.regie section:last-child { border-bottom: 0; }
+.regie .zeile { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.regie .zeile > label { font-weight: 700; }
+.regie .eingabe { min-height: 40px; font-size: 16px; padding: 0.3em 0.6em; }
+.regie select.eingabe { width: auto; max-width: 100%; }
+.regie input[type=number].eingabe { width: 88px; }
+.regie textarea.eingabe { min-height: 80px; resize: vertical; font-weight: 600; }
+.umschalter { display: inline-flex; border: 2px solid var(--tinte); border-radius: var(--hand-c); overflow: hidden; }
+.umschalter button {
+  appearance: none; border: 0; background: var(--weiss); cursor: pointer;
+  padding: 7px 12px; font-weight: 800; min-height: 40px;
+}
+.umschalter button + button { border-left: 2px solid var(--tinte); }
+.umschalter button.an { background: var(--tinte); color: var(--creme); }
+.regie .knopfreihe { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.regie .knopfreihe .voll { grid-column: 1 / -1; }
+.regie .knopf { min-height: 44px; }
+.regie .grossknopf { font-size: 22px; font-family: var(--schrift-hand); font-weight: 400; }
+.regie .status { font-weight: 700; color: var(--tinte-weich); margin: 6px 0 0; }
+.katwahl { max-height: 250px; overflow-y: auto; margin-top: 8px; padding: 6px 8px; background: var(--weiss); border: 2px solid var(--tinte); border-radius: var(--hand-b); }
+.katwahl h3 { font-size: 18px; margin: 6px 0 2px; }
+.katwahl label { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-weight: 600; cursor: pointer; }
+.katwahl input { width: 20px; height: 20px; accent-color: var(--rot); }
+.spielerzeilen { list-style: none; margin: 8px 0 0; padding: 0; }
+.spielerzeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center; gap: 6px;
+  padding: 6px 0;
+  border-bottom: 1.5px solid rgba(198, 210, 228, 0.95);
+}
+.spielerzeile .n { font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.spielerzeile.weg .n { color: var(--grau); }
+.spielerzeile.weg .n::after { content: " · weg"; font-weight: 600; font-size: 13px; }
+.spielerzeile.stumm .n::after { content: " · stumm"; color: var(--rot); font-weight: 700; font-size: 13px; }
+.spielerzeile .p { font-family: var(--schrift-hand); font-size: 20px; }
+.spielerzeile .aktionen { display: flex; gap: 4px; }
+.mini {
+  appearance: none; cursor: pointer;
+  width: 34px; height: 34px;
+  border: 2px solid var(--tinte); background: var(--weiss);
+  border-radius: 10px 14px 9px 13px;
+  display: grid; place-items: center; padding: 0;
+}
+.mini svg { width: 18px; height: 18px; }
+.mini.an { background: var(--rot); color: var(--weiss); }
+.teamzuordnung { grid-column: 1 / -1; display: flex; gap: 6px; }
+.teamzuordnung button {
+  appearance: none; cursor: pointer;
+  flex: 1; min-height: 30px;
+  border: 2px solid var(--tinte);
+  background: var(--weiss);
+  border-radius: 8px 12px 9px 11px;
+  font-size: 12px; font-weight: 800;
+  position: relative;
+  padding: 0 4px 0 18px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.teamzuordnung button::before { content: ""; position: absolute; left: 5px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: var(--team); border: 1.5px solid var(--tinte); }
+.teamzuordnung button.an { background: var(--team); }
+.umbenennen { grid-column: 1 / -1; display: flex; gap: 6px; }
+.wortblick { user-select: none; -webkit-user-select: none; }
+.wortblick .verdeckt { font-family: var(--schrift-hand); font-size: 26px; min-height: 1.2em; margin-top: 6px; }
+
+/* Lehrkraft-Pult auf schmalem Fenster */
+@media (max-width: 1100px) {
+  .pult { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .regie { border-left: 0; border-top: 3px solid var(--tinte); }
+  .buehne { min-height: 100dvh; padding: 16px; }
+  .b-inhalt { grid-template-columns: minmax(0, 1fr); }
+  .b-lobby { grid-template-columns: minmax(0, 1fr); }
+  .b-kopf { padding-right: 0; flex-wrap: wrap; min-height: 0; }
+  .b-kopf .zeitkreis, .b-kopf .buchstabe { width: 90px; height: 90px; }
+  .b-kopf .zk-zahl { font-size: 36px; }
+  .b-kopf .buchstabe { font-size: 64px; }
+  .b-kopf .muster { font-size: 40px; }
+  .codeecke { position: static; margin: 0 0 12px auto; transform: none; }
+  .b-teams { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .b-ende { grid-template-columns: minmax(0, 1fr); }
+  #b-ende .b-tafel { padding-top: 0; }
+  .stufe.s1 { min-height: 260px; } .stufe.s2 { min-height: 200px; } .stufe.s3 { min-height: 150px; }
+  .b-blattrahmen .zeichenblatt { width: 100%; }
+}
+@media (max-width: 520px) {
+  .b-kopf .muster { font-size: 30px; }
+  .codeecke .code { font-size: 32px; }
+  .codeecke .qr { width: 64px; height: 64px; }
+  .b-lobby h1 { font-size: 48px; }
+  .b-anleitung { font-size: 20px; }
+  .b-teams { grid-template-columns: minmax(0, 1fr); }
+  .b-auswertung .antwortliste { columns: 1; }
+  .b-auswertung .antwort .was { font-size: 24px; }
+  .urteil { min-width: 96px; font-size: 20px; }
+  .b-tafel .rangliste li, .b-ende .rangliste li { font-size: 24px; }
+  .stufe .n { font-size: 18px; }
+  .stufe .z { font-size: 50px; }
+  .stufe.s1 { min-height: 200px; } .stufe.s2 { min-height: 150px; } .stufe.s3 { min-height: 110px; }
+}
+
+/* ---------- Bewegung reduzieren ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
