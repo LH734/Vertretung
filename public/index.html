@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FCFBF6">
+  <title>Spieleraum · Mitspielen</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F5CB5E'/%3E%3Cpath d='M8 24l3-1 12-12-2-2L9 21z' fill='%23fff' stroke='%232E1A3B' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Mulish:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/stil.css?v=10">
+</head>
+<body class="kind">
+  <header class="kind-kopf">
+    <div class="logo" aria-label="Spieleraum">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 33l2.5-7.5L28 7l5 5-18.5 18.5z" fill="#F5CB5E" stroke="#2E1A3B" stroke-width="2.5" stroke-linejoin="round"/><path d="M24.5 10.5l5 5" stroke="#2E1A3B" stroke-width="2.5"/><path d="M7 33l2.5-7.5 5 5z" fill="#E94F4F" stroke="#2E1A3B" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      <span>Spieleraum</span>
+    </div>
+    <div class="wer" id="wer" hidden>
+      <span class="name" id="kopf-name"></span>
+      <span class="punktestand" id="kopf-punkte"></span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Beitritt -->
+    <section id="v-beitritt" class="ansicht beitritt">
+      <div class="notiz klebestreifen beitritt-zettel">
+        <h1>Mitspielen</h1>
+        <p class="unter">Den Code siehst du vorne an der Tafel.</p>
+        <form id="beitrittsform" autocomplete="off" novalidate>
+          <label class="feld">
+            <span>Raumcode</span>
+            <input class="eingabe code-eingabe" id="code" name="code" maxlength="4" inputmode="text" autocapitalize="characters" spellcheck="false" placeholder="ABCD" required>
+          </label>
+          <label class="feld">
+            <span>Dein Spitzname</span>
+            <input class="eingabe" id="name" name="name" maxlength="16" spellcheck="false" placeholder="z. B. Blitzmaus" required>
+          </label>
+          <button class="knopf haupt gross" type="submit" id="beitreten-knopf">Los geht’s</button>
+        </form>
+        <p class="datenschutz">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z" fill="#FDFCE4" stroke="#2E1A3B" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="#E94F4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Du gibst nur einen Spitznamen ein. Nach dem Spiel bleibt davon nichts übrig.</span>
+        </p>
+      </div>
+      <a class="lehrerlink" href="/lehrer">Für Lehrkräfte: Raum öffnen</a>
+    </section>
+
+    <!-- Lobby -->
+    <section id="v-lobby" class="ansicht lobby" hidden>
+      <h1><span class="unterstrich" id="lobby-titel">Du bist drin!</span></h1>
+      <p class="unter" id="lobby-text">Warte kurz, gleich geht es los.</p>
+      <div id="teamwahl"></div>
+      <h2 class="hand" style="font-size:26px;margin:0 0 10px">Schon da</h2>
+      <ul class="namensschilder" id="lobby-namen"></ul>
+    </section>
+
+    <!-- Zeichnen und Raten -->
+    <section id="v-zeichnen" class="ansicht" hidden>
+      <div class="spielkopf">
+        <div id="z-timer"></div>
+        <div class="info">
+          <div class="rundenzeile" id="z-runde"></div>
+          <div class="muster" id="z-muster" aria-live="polite"></div>
+          <div class="hinweiszeile" id="z-hinweis"></div>
+        </div>
+      </div>
+      <div class="zeichnen-raster">
+        <div class="blattrahmen">
+          <div class="zeichenblatt blatt" id="z-blatt">
+            <canvas id="z-canvas" aria-label="Zeichenfläche"></canvas>
+            <div class="ueberblatt" id="z-ueber" hidden></div>
+          </div>
+          <div class="werkzeuge" id="z-werkzeuge" hidden></div>
+        </div>
+        <aside class="chatspalte">
+          <h2>Raten</h2>
+          <ul class="chatliste" id="z-chat" aria-live="polite"></ul>
+          <form class="chateingabe" id="z-form" autocomplete="off">
+            <label class="unsichtbar" for="z-eingabe">Dein Tipp</label>
+            <input class="eingabe" id="z-eingabe" maxlength="100" placeholder="Dein Tipp …" enterkeyhint="send" spellcheck="false">
+            <button class="knopf haupt" type="submit">Los</button>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Stadt, Land, Fluss -->
+    <section id="v-slf" class="ansicht" hidden>
+      <div class="spielkopf">
+        <div class="buchstabe" id="s-buchstabe" aria-label="Buchstabe"></div>
+        <div id="s-timer"></div>
+        <div class="info">
+          <div class="rundenzeile" id="s-runde"></div>
+          <div class="hinweiszeile" id="s-hinweis"></div>
+        </div>
+      </div>
+      <div id="s-schreiben">
+        <p class="stoppband" id="s-stopp" hidden></p>
+        <form id="s-form" autocomplete="off">
+          <div class="slf-felder" id="s-felder"></div>
+          <div class="slf-fuss">
+            <button class="knopf haupt gross" type="submit" id="s-fertig">Abgeben</button>
+            <span class="abgegeben" id="s-abgegeben"></span>
+          </div>
+        </form>
+      </div>
+      <div id="s-auswertung" class="auswertung" hidden>
+        <h2 id="s-kat"></h2>
+        <p style="margin:4px 0 0;font-weight:700">Stimmt das? Stimm mit dem Daumen ab. Entschieden wird vorne am Pult.</p>
+        <ul class="antwortliste" id="s-antworten"></ul>
+      </div>
+      <div id="s-tafel" hidden>
+        <div class="notiz klebestreifen endkarte">
+          <h2 style="font-size:40px">Rundentafel</h2>
+          <p style="margin:0 0 10px;font-weight:700">Punkte aus dieser Runde. Gleich geht es weiter.</p>
+          <ol class="rangliste" id="s-tafelliste"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spielende -->
+    <section id="v-ende" class="ansicht" hidden>
+      <div class="notiz klebestreifen endkarte">
+        <h1>Geschafft!</h1>
+        <div id="e-teams"></div>
+        <ol class="rangliste" id="e-liste"></ol>
+      </div>
+    </section>
+  </main>
+
+  <div class="pause-schicht" id="pause" hidden>
+    <div class="pause-zettel">
+      <h2>Pause</h2>
+      <p>Hände weg vom Tablet und nach vorne schauen.</p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/gemeinsam.js?v=10"></script>
+  <script src="/app.js?v=10"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FCFBF6">
+  <title>Spieleraum · Bühne</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23E94F4F'/%3E%3Cpath d='M8 24l3-1 12-12-2-2L9 21z' fill='%23fff' stroke='%232E1A3B' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Mulish:wght@400;600;700;800&display=swap">
+  <link rel="stylesheet" href="/stil.css?v=10">
+</head>
+<body class="lehrer">
+  <div class="pult" id="pult">
+    <!-- ================= BÜHNE ================= -->
+    <main class="buehne" id="buehne">
+      <div class="codeecke" id="codeecke" hidden>
+        <div class="qr" id="ecke-qr"></div>
+        <div>
+          <div class="klein-text">Mitspielen mit Code</div>
+          <div class="code" id="ecke-code"></div>
+        </div>
+      </div>
+
+      <div id="b-verbinde" class="b-lobby">
+        <div><h1>Einen Moment …</h1><p class="b-anleitung" id="b-verbinde-text">Der Raum wird vorbereitet.</p></div>
+      </div>
+
+      <!-- Passwort für den Lehrerbereich -->
+      <div id="b-anmelden" class="anmelden" hidden>
+        <div class="notiz klebestreifen anmelde-zettel">
+          <h1>Lehrerbereich</h1>
+          <p class="unter">Gib das Passwort ein, dann öffnet sich ein neuer Raum.</p>
+          <form id="anmeldeform" autocomplete="off">
+            <label class="feld">
+              <span>Passwort</span>
+              <input class="eingabe" type="password" id="passwort" autocomplete="current-password" required>
+            </label>
+            <p class="anmelde-fehler" id="anmelde-fehler" role="alert"></p>
+            <button class="knopf haupt gross" type="submit" id="anmelden-knopf">Raum öffnen</button>
+          </form>
+          <a class="lehrerlink" href="/">Zurück zur Startseite</a>
+        </div>
+      </div>
+
+      <!-- Lobby -->
+      <div id="b-lobby" class="b-lobby" hidden>
+        <div style="min-width:0">
+          <h1><span class="unterstrich">Kommt rein!</span></h1>
+          <div class="b-anleitung">
+            <ol>
+              <li>Öffne <span class="adresse" id="b-adresse"></span></li>
+              <li>Gib den Code und deinen Spitznamen ein.</li>
+            </ol>
+          </div>
+          <p class="b-zaehler" id="b-zaehler"></p>
+          <div id="b-namen"></div>
+        </div>
+        <div class="b-codeblatt herein" id="b-codeblatt">
+          <div class="klein-text">Scannen oder Code eingeben</div>
+          <div class="qr" id="b-qr"></div>
+          <div class="code" id="b-code"></div>
+        </div>
+      </div>
+
+      <!-- Zeichnen und Raten -->
+      <div id="b-zeichnen" hidden style="display:flex;flex-direction:column;flex:1;min-height:0">
+        <div class="b-kopf">
+          <div id="bz-timer"></div>
+          <div class="info">
+            <div class="rundenzeile" id="bz-runde"></div>
+            <div class="muster" id="bz-muster"></div>
+            <div class="hinweiszeile" id="bz-hinweis"></div>
+          </div>
+        </div>
+        <div class="b-inhalt">
+          <div class="b-blattrahmen">
+            <div class="zeichenblatt blatt">
+              <canvas id="bz-canvas" aria-label="Zeichnung"></canvas>
+              <div class="ueberblatt" id="bz-ueber" hidden></div>
+            </div>
+          </div>
+          <div class="b-seite">
+            <div class="b-tafel">
+              <h2 id="bz-tafel-titel">Punkte</h2>
+              <ol class="rangliste" id="bz-tafel"></ol>
+            </div>
+            <div class="b-feed chatspalte">
+              <h2>Tipps</h2>
+              <ul class="chatliste" id="bz-chat"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stadt, Land, Fluss -->
+      <div id="b-slf" hidden style="display:flex;flex-direction:column;flex:1;min-height:0">
+        <div class="b-kopf">
+          <div class="buchstabe" id="bs-buchstabe"></div>
+          <div id="bs-timer"></div>
+          <div class="info">
+            <div class="rundenzeile" id="bs-runde"></div>
+            <div class="hinweiszeile" id="bs-hinweis"></div>
+          </div>
+        </div>
+        <div id="bs-schreiben">
+          <p class="stoppband" id="bs-stopp" hidden style="font-size:34px;display:inline-block"></p>
+          <ul class="b-kategorien" id="bs-kategorien"></ul>
+          <p class="b-fortschritt" id="bs-fortschritt"></p>
+          <ul class="namensschilder b-fertige" id="bs-fertige"></ul>
+        </div>
+        <div id="bs-auswertung" class="b-auswertung" hidden>
+          <div class="katzaehler" id="bs-katzaehler"></div>
+          <h2 id="bs-kat"></h2>
+          <ul class="antwortliste" id="bs-antworten"></ul>
+          <div class="b-navi">
+            <button class="knopf" type="button" id="bs-zurueck">‹ Vorherige Kategorie</button>
+            <button class="knopf haupt" type="button" id="bs-weiter">Nächste Kategorie ›</button>
+          </div>
+        </div>
+        <div id="bs-tafel" hidden style="display:flex;flex-direction:column;flex:1;min-height:0">
+          <div class="b-ende" style="flex:1;min-height:0">
+            <div class="b-tafel"><h2>Diese Runde</h2><ol class="rangliste" id="bs-tafel-runde"></ol></div>
+            <div class="b-tafel"><h2 id="bs-gesamt-titel">Gesamt</h2><ol class="rangliste" id="bs-tafel-gesamt"></ol></div>
+          </div>
+          <div class="b-navi"><button class="knopf haupt gross" type="button" id="bs-naechste">Nächste Runde ›</button></div>
+        </div>
+      </div>
+
+      <!-- Spielende -->
+      <div id="b-ende" hidden>
+        <div class="b-ende">
+          <div>
+            <h1><span class="unterstrich">Geschafft!</span></h1>
+            <div class="siegertreppe" id="be-treppe"></div>
+          </div>
+          <div class="b-tafel">
+            <h2 id="be-titel">Alle Punkte</h2>
+            <ol class="rangliste" id="be-liste"></ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="pause-schicht" id="pause" hidden style="position:absolute">
+        <div class="pause-zettel">
+          <h2>Pause</h2>
+          <p>Hände weg vom Tablet und nach vorne schauen.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- ================= REGIE ================= -->
+    <aside class="regie" id="regie" aria-label="Regieleiste">
+      <section>
+        <h2>Regie <small id="r-verbindung">verbinde …</small></h2>
+        <div class="zeile">
+          <label>Raum</label>
+          <span class="hand" style="font-size:30px;letter-spacing:.1em" id="r-code">····</span>
+          <a class="knopf klein" id="r-buehne-link" href="#" target="_blank" rel="noopener" style="margin-left:auto">Zweite Bühne öffnen</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Spiel</h2>
+        <div class="zeile">
+          <div class="umschalter" id="r-spiel">
+            <button type="button" data-wert="zeichnen">Zeichnen und Raten</button>
+            <button type="button" data-wert="slf">Stadt, Land, Fluss</button>
+          </div>
+        </div>
+
+        <div id="r-zeichnen">
+          <div class="zeile">
+            <label for="rz-runden">Runden</label><input class="eingabe" type="number" id="rz-runden" min="1" max="60">
+            <label for="rz-sekunden">Sekunden</label><input class="eingabe" type="number" id="rz-sekunden" min="30" max="240" step="5">
+          </div>
+          <p class="status" style="margin-top:4px">Eine Runde = ein Kind zeichnet.</p>
+          <div class="zeile">
+            <label for="rz-liste">Begriffe</label>
+            <select class="eingabe" id="rz-liste"></select>
+          </div>
+          <label class="feld" style="margin-top:10px">
+            <span style="font-size:17px">Eigene Begriffe, einer pro Zeile</span>
+            <textarea class="eingabe" id="rz-eigene" placeholder="Klassenfahrt&#10;Schulhof&#10;Hausmeister"></textarea>
+          </label>
+        </div>
+
+        <div id="r-slf" hidden>
+          <div class="zeile">
+            <label for="rs-runden">Runden</label><input class="eingabe" type="number" id="rs-runden" min="1" max="20">
+            <label for="rs-sekunden">Sekunden</label><input class="eingabe" type="number" id="rs-sekunden" min="30" max="600" step="10">
+          </div>
+          <div class="zeile">
+            <div class="umschalter" id="rs-modus">
+              <button type="button" data-wert="timer">Fester Timer</button>
+              <button type="button" data-wert="stopp">Erster Stopp</button>
+            </div>
+          </div>
+          <p class="status" id="rs-anzahl"></p>
+          <div class="katwahl" id="rs-kategorien"></div>
+          <label class="feld" style="margin-top:10px">
+            <span style="font-size:17px">Eigene Kategorien, eine pro Zeile</span>
+            <textarea class="eingabe" id="rs-eigene" placeholder="etwas, das in den Ranzen passt"></textarea>
+          </label>
+        </div>
+
+        <div class="knopfreihe">
+          <button class="knopf haupt grossknopf voll" type="button" id="r-start">Spiel starten</button>
+          <button class="knopf" type="button" id="r-ueberspringen">Runde überspringen</button>
+          <button class="knopf" type="button" id="r-beenden">Spiel beenden</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Steuerung</h2>
+        <div class="knopfreihe">
+          <button class="knopf gold grossknopf voll" type="button" id="r-pause">Pause</button>
+          <button class="knopf" type="button" id="r-bild">Bild löschen</button>
+          <button class="knopf" type="button" id="r-chat">Chat leeren</button>
+        </div>
+        <div class="wortblick" id="r-wortblick" hidden>
+          <div class="knopfreihe"><button class="knopf voll" type="button" id="r-wort">Wort zeigen (gedrückt halten)</button></div>
+          <div class="verdeckt" id="r-wort-text"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Wertung</h2>
+        <div class="zeile">
+          <div class="umschalter" id="r-wertung">
+            <button type="button" data-wert="einzel">Einzelspieler</button>
+            <button type="button" data-wert="teams">Teams</button>
+          </div>
+        </div>
+        <div class="zeile" id="r-teamwahl-zeile" hidden>
+          <label>Teams wählt</label>
+          <div class="umschalter" id="r-teamwahl">
+            <button type="button" data-wert="lehrkraft">die Lehrkraft</button>
+            <button type="button" data-wert="selbst">jedes Kind</button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Spieler <small id="r-anzahl"></small></h2>
+        <ul class="spielerzeilen" id="r-spieler"></ul>
+      </section>
+    </aside>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/gemeinsam.js?v=10"></script>
+  <script src="/qr.js?v=10"></script>
+  <script src="/lehrer.js?v=10"></script>
+</body>
+</html>
