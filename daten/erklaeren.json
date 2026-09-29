@@ -1,0 +1,1294 @@
+{
+  "_anleitung": [
+    "Karten für „Begriffe erklären“. Diese Datei darfst du selbst bearbeiten, sie wird beim Serverstart gelesen.",
+    "Jede Karte hat ein Wort und genau die Wörter unter 'tabu', die beim Erklären nicht gesagt werden dürfen (am besten vier).",
+    "Neue Gruppe: einen weiteren Block unter 'listen' anlegen. In der Regie hakst du an, welche Gruppen gemischt werden.",
+    "Schlüssel mit Unterstrich sind Kommentare."
+  ],
+  "listen": {
+    "Alltag": {
+      "karten": [
+        {
+          "wort": "Zahnbürste",
+          "tabu": [
+            "Zähne",
+            "putzen",
+            "Pasta",
+            "Bad"
+          ]
+        },
+        {
+          "wort": "Regenschirm",
+          "tabu": [
+            "Regen",
+            "nass",
+            "aufspannen",
+            "Wetter"
+          ]
+        },
+        {
+          "wort": "Kühlschrank",
+          "tabu": [
+            "kalt",
+            "Küche",
+            "Essen",
+            "Tür"
+          ]
+        },
+        {
+          "wort": "Fahrrad",
+          "tabu": [
+            "Pedale",
+            "Reifen",
+            "Lenker",
+            "fahren"
+          ]
+        },
+        {
+          "wort": "Schlüssel",
+          "tabu": [
+            "Tür",
+            "Schloss",
+            "aufschließen",
+            "Bund"
+          ]
+        },
+        {
+          "wort": "Wecker",
+          "tabu": [
+            "klingeln",
+            "Uhr",
+            "morgens",
+            "aufstehen"
+          ]
+        },
+        {
+          "wort": "Handy",
+          "tabu": [
+            "telefonieren",
+            "Smartphone",
+            "Nachricht",
+            "Akku"
+          ]
+        },
+        {
+          "wort": "Brille",
+          "tabu": [
+            "Augen",
+            "sehen",
+            "Gläser",
+            "Nase"
+          ]
+        },
+        {
+          "wort": "Kopfkissen",
+          "tabu": [
+            "Bett",
+            "schlafen",
+            "weich",
+            "Kopf"
+          ]
+        },
+        {
+          "wort": "Treppe",
+          "tabu": [
+            "Stufen",
+            "hoch",
+            "runter",
+            "Geländer"
+          ]
+        },
+        {
+          "wort": "Staubsauger",
+          "tabu": [
+            "saugen",
+            "Boden",
+            "Dreck",
+            "Teppich"
+          ]
+        },
+        {
+          "wort": "Spiegel",
+          "tabu": [
+            "sehen",
+            "Bild",
+            "Glas",
+            "Bad"
+          ]
+        },
+        {
+          "wort": "Mülleimer",
+          "tabu": [
+            "Abfall",
+            "wegwerfen",
+            "Tonne",
+            "Deckel"
+          ]
+        },
+        {
+          "wort": "Fernseher",
+          "tabu": [
+            "schauen",
+            "Film",
+            "Sendung",
+            "Fernbedienung"
+          ]
+        },
+        {
+          "wort": "Briefkasten",
+          "tabu": [
+            "Post",
+            "Brief",
+            "Briefträger",
+            "einwerfen"
+          ]
+        },
+        {
+          "wort": "Kalender",
+          "tabu": [
+            "Tag",
+            "Monat",
+            "Datum",
+            "Jahr"
+          ]
+        },
+        {
+          "wort": "Geldbeutel",
+          "tabu": [
+            "Geld",
+            "Portemonnaie",
+            "Münzen",
+            "Tasche"
+          ]
+        },
+        {
+          "wort": "Taschenlampe",
+          "tabu": [
+            "Licht",
+            "dunkel",
+            "Batterie",
+            "leuchten"
+          ]
+        },
+        {
+          "wort": "Schere",
+          "tabu": [
+            "schneiden",
+            "Papier",
+            "scharf",
+            "basteln"
+          ]
+        },
+        {
+          "wort": "Klebeband",
+          "tabu": [
+            "kleben",
+            "Rolle",
+            "Tesa",
+            "festmachen"
+          ]
+        },
+        {
+          "wort": "Waschmaschine",
+          "tabu": [
+            "Wäsche",
+            "waschen",
+            "Kleidung",
+            "schleudern"
+          ]
+        },
+        {
+          "wort": "Kerze",
+          "tabu": [
+            "Wachs",
+            "Flamme",
+            "Docht",
+            "anzünden"
+          ]
+        },
+        {
+          "wort": "Hausaufgaben",
+          "tabu": [
+            "Schule",
+            "Lehrer",
+            "Heft",
+            "machen"
+          ]
+        },
+        {
+          "wort": "Pausenhof",
+          "tabu": [
+            "Schule",
+            "Pause",
+            "draußen",
+            "spielen"
+          ]
+        },
+        {
+          "wort": "Zeugnis",
+          "tabu": [
+            "Noten",
+            "Schule",
+            "Halbjahr",
+            "Ende"
+          ]
+        },
+        {
+          "wort": "Ranzen",
+          "tabu": [
+            "Schule",
+            "Rucksack",
+            "Tasche",
+            "Bücher"
+          ]
+        },
+        {
+          "wort": "Tafel",
+          "tabu": [
+            "Kreide",
+            "Schule",
+            "schreiben",
+            "Klassenzimmer"
+          ]
+        },
+        {
+          "wort": "Radiergummi",
+          "tabu": [
+            "Fehler",
+            "weg",
+            "Bleistift",
+            "rubbeln"
+          ]
+        },
+        {
+          "wort": "Geburtstag",
+          "tabu": [
+            "Kuchen",
+            "Geschenk",
+            "feiern",
+            "Jahr"
+          ]
+        },
+        {
+          "wort": "Pizza",
+          "tabu": [
+            "Italien",
+            "Käse",
+            "Teig",
+            "Tomate"
+          ]
+        }
+      ]
+    },
+    "Tiere und Natur": {
+      "karten": [
+        {
+          "wort": "Giraffe",
+          "tabu": [
+            "Hals",
+            "lang",
+            "Afrika",
+            "gelb"
+          ]
+        },
+        {
+          "wort": "Elefant",
+          "tabu": [
+            "Rüssel",
+            "groß",
+            "grau",
+            "Afrika"
+          ]
+        },
+        {
+          "wort": "Pinguin",
+          "tabu": [
+            "Eis",
+            "Vogel",
+            "schwarz",
+            "weiß"
+          ]
+        },
+        {
+          "wort": "Känguru",
+          "tabu": [
+            "springen",
+            "Beutel",
+            "Australien",
+            "Baby"
+          ]
+        },
+        {
+          "wort": "Biene",
+          "tabu": [
+            "Honig",
+            "summen",
+            "stechen",
+            "gelb"
+          ]
+        },
+        {
+          "wort": "Schnecke",
+          "tabu": [
+            "langsam",
+            "Haus",
+            "schleimig",
+            "Fühler"
+          ]
+        },
+        {
+          "wort": "Igel",
+          "tabu": [
+            "Stacheln",
+            "Herbst",
+            "klein",
+            "Winterschlaf"
+          ]
+        },
+        {
+          "wort": "Eule",
+          "tabu": [
+            "Nacht",
+            "Vogel",
+            "Uhu",
+            "weise"
+          ]
+        },
+        {
+          "wort": "Krokodil",
+          "tabu": [
+            "Zähne",
+            "Reptil",
+            "Fluss",
+            "grün"
+          ]
+        },
+        {
+          "wort": "Schmetterling",
+          "tabu": [
+            "Flügel",
+            "Raupe",
+            "bunt",
+            "fliegen"
+          ]
+        },
+        {
+          "wort": "Kuh",
+          "tabu": [
+            "Milch",
+            "muh",
+            "Bauernhof",
+            "Weide"
+          ]
+        },
+        {
+          "wort": "Spinne",
+          "tabu": [
+            "acht",
+            "Beine",
+            "Netz",
+            "krabbeln"
+          ]
+        },
+        {
+          "wort": "Delfin",
+          "tabu": [
+            "Meer",
+            "schlau",
+            "Säugetier",
+            "springen"
+          ]
+        },
+        {
+          "wort": "Hund",
+          "tabu": [
+            "bellen",
+            "Haustier",
+            "Gassi",
+            "Knochen"
+          ]
+        },
+        {
+          "wort": "Katze",
+          "tabu": [
+            "miau",
+            "Maus",
+            "Haustier",
+            "schnurren"
+          ]
+        },
+        {
+          "wort": "Regenbogen",
+          "tabu": [
+            "Farben",
+            "Regen",
+            "Sonne",
+            "Bogen"
+          ]
+        },
+        {
+          "wort": "Vulkan",
+          "tabu": [
+            "Lava",
+            "Berg",
+            "Ausbruch",
+            "heiß"
+          ]
+        },
+        {
+          "wort": "Wald",
+          "tabu": [
+            "Bäume",
+            "grün",
+            "Förster",
+            "Tiere"
+          ]
+        },
+        {
+          "wort": "Schneemann",
+          "tabu": [
+            "Schnee",
+            "Winter",
+            "Karotte",
+            "bauen"
+          ]
+        },
+        {
+          "wort": "Gewitter",
+          "tabu": [
+            "Blitz",
+            "Donner",
+            "Regen",
+            "Wetter"
+          ]
+        },
+        {
+          "wort": "Sonnenblume",
+          "tabu": [
+            "gelb",
+            "groß",
+            "Kerne",
+            "Blume"
+          ]
+        },
+        {
+          "wort": "Kaktus",
+          "tabu": [
+            "Stacheln",
+            "Wüste",
+            "Pflanze",
+            "grün"
+          ]
+        },
+        {
+          "wort": "Mond",
+          "tabu": [
+            "Nacht",
+            "Himmel",
+            "voll",
+            "Erde"
+          ]
+        },
+        {
+          "wort": "Wüste",
+          "tabu": [
+            "Sand",
+            "heiß",
+            "trocken",
+            "Kamel"
+          ]
+        },
+        {
+          "wort": "Insel",
+          "tabu": [
+            "Wasser",
+            "Meer",
+            "Land",
+            "Strand"
+          ]
+        }
+      ]
+    },
+    "Freizeit und Sport": {
+      "karten": [
+        {
+          "wort": "Fußball",
+          "tabu": [
+            "Tor",
+            "Ball",
+            "Spieler",
+            "Schuss"
+          ]
+        },
+        {
+          "wort": "Schwimmbad",
+          "tabu": [
+            "Wasser",
+            "baden",
+            "Becken",
+            "Sprungturm"
+          ]
+        },
+        {
+          "wort": "Trampolin",
+          "tabu": [
+            "springen",
+            "hüpfen",
+            "Garten",
+            "Netz"
+          ]
+        },
+        {
+          "wort": "Zelt",
+          "tabu": [
+            "Camping",
+            "schlafen",
+            "draußen",
+            "Heringe"
+          ]
+        },
+        {
+          "wort": "Achterbahn",
+          "tabu": [
+            "Freizeitpark",
+            "schnell",
+            "Loopings",
+            "fahren"
+          ]
+        },
+        {
+          "wort": "Kino",
+          "tabu": [
+            "Film",
+            "Popcorn",
+            "Leinwand",
+            "Karte"
+          ]
+        },
+        {
+          "wort": "Zirkus",
+          "tabu": [
+            "Clown",
+            "Zelt",
+            "Manege",
+            "Artisten"
+          ]
+        },
+        {
+          "wort": "Schach",
+          "tabu": [
+            "König",
+            "Brett",
+            "Figuren",
+            "Dame"
+          ]
+        },
+        {
+          "wort": "Puzzle",
+          "tabu": [
+            "Teile",
+            "zusammensetzen",
+            "Bild",
+            "legen"
+          ]
+        },
+        {
+          "wort": "Gitarre",
+          "tabu": [
+            "Saiten",
+            "spielen",
+            "Musik",
+            "Instrument"
+          ]
+        },
+        {
+          "wort": "Skateboard",
+          "tabu": [
+            "Rollen",
+            "Brett",
+            "fahren",
+            "Tricks"
+          ]
+        },
+        {
+          "wort": "Schlittschuh",
+          "tabu": [
+            "Eis",
+            "laufen",
+            "Winter",
+            "Kufen"
+          ]
+        },
+        {
+          "wort": "Handstand",
+          "tabu": [
+            "Hände",
+            "Kopf",
+            "umgedreht",
+            "Beine"
+          ]
+        },
+        {
+          "wort": "Versteckspiel",
+          "tabu": [
+            "suchen",
+            "verstecken",
+            "zählen",
+            "finden"
+          ]
+        },
+        {
+          "wort": "Picknick",
+          "tabu": [
+            "Decke",
+            "Essen",
+            "draußen",
+            "Korb"
+          ]
+        },
+        {
+          "wort": "Lagerfeuer",
+          "tabu": [
+            "Holz",
+            "Flamme",
+            "Stockbrot",
+            "Abend"
+          ]
+        },
+        {
+          "wort": "Drachen",
+          "tabu": [
+            "steigen",
+            "Wind",
+            "Schnur",
+            "Herbst"
+          ]
+        },
+        {
+          "wort": "Karussell",
+          "tabu": [
+            "drehen",
+            "Rummel",
+            "fahren",
+            "Pferde"
+          ]
+        },
+        {
+          "wort": "Tischtennis",
+          "tabu": [
+            "Platte",
+            "Schläger",
+            "Ball",
+            "Netz"
+          ]
+        },
+        {
+          "wort": "Zauberer",
+          "tabu": [
+            "Trick",
+            "Hut",
+            "Kaninchen",
+            "Stab"
+          ]
+        },
+        {
+          "wort": "Videospiel",
+          "tabu": [
+            "Konsole",
+            "Controller",
+            "zocken",
+            "Computer"
+          ]
+        },
+        {
+          "wort": "Wandern",
+          "tabu": [
+            "laufen",
+            "Berg",
+            "Rucksack",
+            "Weg"
+          ]
+        },
+        {
+          "wort": "Tanzen",
+          "tabu": [
+            "Musik",
+            "bewegen",
+            "Party",
+            "Schritte"
+          ]
+        },
+        {
+          "wort": "Angeln",
+          "tabu": [
+            "Fisch",
+            "Rute",
+            "See",
+            "Haken"
+          ]
+        },
+        {
+          "wort": "Ritter",
+          "tabu": [
+            "Rüstung",
+            "Burg",
+            "Pferd",
+            "Schwert"
+          ]
+        }
+      ]
+    },
+    "Essen": {
+      "karten": [
+        {
+          "wort": "Spaghetti",
+          "tabu": [
+            "Nudeln",
+            "Tomatensoße",
+            "lang",
+            "Italien"
+          ]
+        },
+        {
+          "wort": "Pommes",
+          "tabu": [
+            "Kartoffel",
+            "frittiert",
+            "Ketchup",
+            "Mayo"
+          ]
+        },
+        {
+          "wort": "Schokolade",
+          "tabu": [
+            "süß",
+            "Kakao",
+            "braun",
+            "Tafel"
+          ]
+        },
+        {
+          "wort": "Banane",
+          "tabu": [
+            "gelb",
+            "Obst",
+            "Affe",
+            "schälen"
+          ]
+        },
+        {
+          "wort": "Popcorn",
+          "tabu": [
+            "Mais",
+            "Kino",
+            "knallen",
+            "süß"
+          ]
+        },
+        {
+          "wort": "Eis",
+          "tabu": [
+            "kalt",
+            "Waffel",
+            "Sommer",
+            "schlecken"
+          ]
+        },
+        {
+          "wort": "Brezel",
+          "tabu": [
+            "Salz",
+            "Bäcker",
+            "Teig",
+            "knoten"
+          ]
+        },
+        {
+          "wort": "Honig",
+          "tabu": [
+            "Biene",
+            "süß",
+            "gelb",
+            "Brot"
+          ]
+        },
+        {
+          "wort": "Zitrone",
+          "tabu": [
+            "sauer",
+            "gelb",
+            "Saft",
+            "Frucht"
+          ]
+        },
+        {
+          "wort": "Pfannkuchen",
+          "tabu": [
+            "Pfanne",
+            "Teig",
+            "Eier",
+            "flach"
+          ]
+        },
+        {
+          "wort": "Sandwich",
+          "tabu": [
+            "Brot",
+            "belegt",
+            "Scheiben",
+            "Käse"
+          ]
+        },
+        {
+          "wort": "Suppe",
+          "tabu": [
+            "Löffel",
+            "Teller",
+            "warm",
+            "flüssig"
+          ]
+        },
+        {
+          "wort": "Wassermelone",
+          "tabu": [
+            "grün",
+            "rot",
+            "Kerne",
+            "Sommer"
+          ]
+        },
+        {
+          "wort": "Kartoffel",
+          "tabu": [
+            "Erde",
+            "Pommes",
+            "schälen",
+            "Knolle"
+          ]
+        },
+        {
+          "wort": "Käse",
+          "tabu": [
+            "Milch",
+            "Löcher",
+            "gelb",
+            "Maus"
+          ]
+        },
+        {
+          "wort": "Ei",
+          "tabu": [
+            "Huhn",
+            "Schale",
+            "Frühstück",
+            "kochen"
+          ]
+        },
+        {
+          "wort": "Müsli",
+          "tabu": [
+            "Frühstück",
+            "Milch",
+            "Haferflocken",
+            "Schüssel"
+          ]
+        },
+        {
+          "wort": "Gurke",
+          "tabu": [
+            "grün",
+            "Salat",
+            "lang",
+            "Gemüse"
+          ]
+        },
+        {
+          "wort": "Hamburger",
+          "tabu": [
+            "Brötchen",
+            "Fleisch",
+            "Fast Food",
+            "Käse"
+          ]
+        },
+        {
+          "wort": "Kuchen",
+          "tabu": [
+            "backen",
+            "Geburtstag",
+            "süß",
+            "Stück"
+          ]
+        }
+      ]
+    },
+    "Berufe": {
+      "karten": [
+        {
+          "wort": "Feuerwehr",
+          "tabu": [
+            "Feuer",
+            "löschen",
+            "Wasser",
+            "Sirene"
+          ]
+        },
+        {
+          "wort": "Polizist",
+          "tabu": [
+            "Verbrecher",
+            "Uniform",
+            "Blaulicht",
+            "Streife"
+          ]
+        },
+        {
+          "wort": "Arzt",
+          "tabu": [
+            "krank",
+            "Praxis",
+            "Patient",
+            "Spritze"
+          ]
+        },
+        {
+          "wort": "Zahnarzt",
+          "tabu": [
+            "Zähne",
+            "bohren",
+            "Loch",
+            "Praxis"
+          ]
+        },
+        {
+          "wort": "Bäcker",
+          "tabu": [
+            "Brot",
+            "Brötchen",
+            "morgens",
+            "backen"
+          ]
+        },
+        {
+          "wort": "Pilot",
+          "tabu": [
+            "Flugzeug",
+            "fliegen",
+            "Cockpit",
+            "Kapitän"
+          ]
+        },
+        {
+          "wort": "Lehrer",
+          "tabu": [
+            "Schule",
+            "Unterricht",
+            "Klasse",
+            "Tafel"
+          ]
+        },
+        {
+          "wort": "Koch",
+          "tabu": [
+            "Küche",
+            "kochen",
+            "Restaurant",
+            "Mütze"
+          ]
+        },
+        {
+          "wort": "Friseur",
+          "tabu": [
+            "Haare",
+            "schneiden",
+            "Schere",
+            "Salon"
+          ]
+        },
+        {
+          "wort": "Bauer",
+          "tabu": [
+            "Feld",
+            "Traktor",
+            "Tiere",
+            "Hof"
+          ]
+        },
+        {
+          "wort": "Astronaut",
+          "tabu": [
+            "Weltall",
+            "Rakete",
+            "Mond",
+            "Anzug"
+          ]
+        },
+        {
+          "wort": "Detektiv",
+          "tabu": [
+            "ermitteln",
+            "Lupe",
+            "Fall",
+            "Täter"
+          ]
+        },
+        {
+          "wort": "Tierarzt",
+          "tabu": [
+            "Tiere",
+            "krank",
+            "Hund",
+            "Praxis"
+          ]
+        },
+        {
+          "wort": "Briefträger",
+          "tabu": [
+            "Post",
+            "Brief",
+            "Paket",
+            "bringen"
+          ]
+        },
+        {
+          "wort": "Clown",
+          "tabu": [
+            "Zirkus",
+            "lustig",
+            "Nase",
+            "lachen"
+          ]
+        },
+        {
+          "wort": "Kellner",
+          "tabu": [
+            "Restaurant",
+            "bringen",
+            "Essen",
+            "bestellen"
+          ]
+        },
+        {
+          "wort": "Hausmeister",
+          "tabu": [
+            "Schule",
+            "reparieren",
+            "Schlüssel",
+            "Gebäude"
+          ]
+        },
+        {
+          "wort": "Schiedsrichter",
+          "tabu": [
+            "Pfeife",
+            "Fußball",
+            "Regeln",
+            "Karte"
+          ]
+        },
+        {
+          "wort": "Gärtner",
+          "tabu": [
+            "Pflanzen",
+            "Garten",
+            "Blumen",
+            "gießen"
+          ]
+        },
+        {
+          "wort": "Kapitän",
+          "tabu": [
+            "Schiff",
+            "Meer",
+            "steuern",
+            "Mannschaft"
+          ]
+        }
+      ]
+    },
+    "Orte": {
+      "karten": [
+        {
+          "wort": "Bahnhof",
+          "tabu": [
+            "Zug",
+            "Gleis",
+            "Fahrkarte",
+            "warten"
+          ]
+        },
+        {
+          "wort": "Flughafen",
+          "tabu": [
+            "Flugzeug",
+            "Koffer",
+            "abfliegen",
+            "Pass"
+          ]
+        },
+        {
+          "wort": "Krankenhaus",
+          "tabu": [
+            "krank",
+            "Arzt",
+            "Bett",
+            "Notaufnahme"
+          ]
+        },
+        {
+          "wort": "Bibliothek",
+          "tabu": [
+            "Bücher",
+            "ausleihen",
+            "leise",
+            "lesen"
+          ]
+        },
+        {
+          "wort": "Supermarkt",
+          "tabu": [
+            "einkaufen",
+            "Kasse",
+            "Einkaufswagen",
+            "Regal"
+          ]
+        },
+        {
+          "wort": "Zoo",
+          "tabu": [
+            "Tiere",
+            "Gehege",
+            "Löwen",
+            "besuchen"
+          ]
+        },
+        {
+          "wort": "Strand",
+          "tabu": [
+            "Sand",
+            "Meer",
+            "Sonne",
+            "baden"
+          ]
+        },
+        {
+          "wort": "Burg",
+          "tabu": [
+            "Ritter",
+            "Mauer",
+            "Turm",
+            "alt"
+          ]
+        },
+        {
+          "wort": "Spielplatz",
+          "tabu": [
+            "Rutsche",
+            "Schaukel",
+            "Kinder",
+            "Sandkasten"
+          ]
+        },
+        {
+          "wort": "Bauernhof",
+          "tabu": [
+            "Tiere",
+            "Kuh",
+            "Traktor",
+            "Stall"
+          ]
+        },
+        {
+          "wort": "Freizeitpark",
+          "tabu": [
+            "Achterbahn",
+            "fahren",
+            "Karussell",
+            "Eintritt"
+          ]
+        },
+        {
+          "wort": "Jugendherberge",
+          "tabu": [
+            "Klassenfahrt",
+            "schlafen",
+            "Zimmer",
+            "übernachten"
+          ]
+        },
+        {
+          "wort": "Museum",
+          "tabu": [
+            "Ausstellung",
+            "alt",
+            "Bilder",
+            "anschauen"
+          ]
+        },
+        {
+          "wort": "Leuchtturm",
+          "tabu": [
+            "Licht",
+            "Meer",
+            "Schiffe",
+            "Turm"
+          ]
+        },
+        {
+          "wort": "Eisdiele",
+          "tabu": [
+            "Eis",
+            "Kugel",
+            "Waffel",
+            "Sommer"
+          ]
+        },
+        {
+          "wort": "Bäckerei",
+          "tabu": [
+            "Brot",
+            "Brötchen",
+            "kaufen",
+            "Kuchen"
+          ]
+        },
+        {
+          "wort": "Kirche",
+          "tabu": [
+            "Glocke",
+            "Gottesdienst",
+            "Turm",
+            "beten"
+          ]
+        },
+        {
+          "wort": "Schwimmhalle",
+          "tabu": [
+            "Wasser",
+            "schwimmen",
+            "Becken",
+            "Halle"
+          ]
+        },
+        {
+          "wort": "Kinderzimmer",
+          "tabu": [
+            "Spielzeug",
+            "Bett",
+            "Kinder",
+            "Zimmer"
+          ]
+        },
+        {
+          "wort": "Weltall",
+          "tabu": [
+            "Sterne",
+            "Planeten",
+            "Rakete",
+            "schwarz"
+          ]
+        }
+      ]
+    }
+  }
+}
