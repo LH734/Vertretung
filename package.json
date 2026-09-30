@@ -1,0 +1,21 @@
+{
+  "name": "spieleraum",
+  "version": "1.0.0",
+  "description": "Spieleraum für Klassenfahrten, Ferienlager und Spieleabende",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/lauf.js"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.1"
+  }
+}

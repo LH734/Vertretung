@@ -1,0 +1,31 @@
+{
+  "_hinweis": "Orte für „Wer ist der Spion?“ im Orte-Modus. Jeder Ort bekommt eine Liste von Rollen. Alle außer dem Spion sehen den Ort und eine Rolle daraus. Neue Orte einfach nach demselben Muster ergänzen.",
+  "orte": {
+    "Schwimmbad": ["Bademeisterin", "Kind mit Schwimmflügeln", "Kioskverkäufer", "Turmspringerin", "Opa beim Bahnenziehen", "Teenager auf der Liege", "Reinigungskraft"],
+    "Zeltlager": ["Betreuerin", "Koch", "Heimwehkind", "Nachtwanderungs-Führer", "Gitarrenspielerin", "Kind mit Taschenlampe", "Lagerleitung"],
+    "Klassenfahrt im Bus": ["Busfahrer", "Klassenlehrerin", "Kind mit Reiseübelkeit", "Kind in der letzten Reihe", "Begleitende Mutter", "Kind mit Snacks", "Klassensprecher"],
+    "Zirkus": ["Clown", "Seiltänzerin", "Dompteur", "Zauberin", "Popcornverkäufer", "Zuschauerkind", "Direktorin"],
+    "Krankenhaus": ["Ärztin", "Pfleger", "Patient mit Gipsbein", "Besucherin mit Blumen", "Hausmeister", "Chirurg", "Kind im Wartezimmer"],
+    "Supermarkt": ["Kassiererin", "Filialleiter", "Kind an der Süßigkeitenkasse", "Regalauffüller", "Kundin mit Einkaufszettel", "Lieferant", "Mann an der Käsetheke"],
+    "Piratenschiff": ["Kapitänin", "Koch", "Ausguck", "Papagei", "Gefangener", "Schatzkartenleser", "Schiffsjunge"],
+    "Raumstation": ["Kommandantin", "Ingenieur", "Wissenschaftlerin", "Außerirdischer Gast", "Bordärztin", "Weltraumtourist", "Funker"],
+    "Zoo": ["Tierpflegerin", "Tierärztin", "Kind am Affengehege", "Kassierer", "Fotograf", "Eisverkäuferin", "Zoodirektor"],
+    "Bäckerei": ["Bäckerin", "Verkäufer", "Lehrling", "Frühaufsteher-Kunde", "Konditorin", "Lieferfahrer", "Kind mit Brezel"],
+    "Kino": ["Kartenabreißer", "Popcornverkäuferin", "Filmvorführer", "Pärchen in der letzten Reihe", "Kind mit 3D-Brille", "Filmkritikerin", "Zuspätkommer"],
+    "Bauernhof": ["Bäuerin", "Traktorfahrer", "Kind im Heu", "Tierärztin", "Hofhund", "Erntehelfer", "Feriengast"],
+    "Flughafen": ["Pilotin", "Flugbegleiter", "Sicherheitskontrolle", "Gepäckträger", "Reisende mit viel Gepäck", "Fluglotsin", "Kind am Fenster"],
+    "Schule": ["Schulleiterin", "Hausmeister", "Referendarin", "Kind aus der 5. Klasse", "Sekretärin", "Mensakoch", "Klassenclown"],
+    "Freizeitpark": ["Achterbahnfahrer", "Maskottchen", "Zuckerwatteverkäuferin", "Mechaniker", "Kind, das zu klein ist", "Fotografin am Wildwasser", "Parkdirektor"],
+    "Strand": ["Rettungsschwimmerin", "Eisverkäufer", "Sandburgenbauerin", "Surfer", "Muschelsammler", "Kind mit Eimer", "Sonnenbadende"],
+    "Bibliothek": ["Bibliothekarin", "Leseratte", "Schüler mit Hausaufgaben", "Autorin bei einer Lesung", "Hausmeister", "Kind in der Bilderbuchecke", "Student"],
+    "Fußballstadion": ["Schiedsrichterin", "Torwart", "Trainer", "Fan in der Kurve", "Stadionsprecherin", "Balljunge", "Bratwurstverkäufer"],
+    "Burg im Mittelalter": ["König", "Burgfräulein", "Ritter", "Hofnarr", "Schmiedin", "Wache am Tor", "Koch in der Burgküche"],
+    "Polizeiwache": ["Kommissarin", "Streifenpolizist", "Zeuge", "Taschendieb", "Polizeihund-Führer", "Anwältin", "Kind mit Fundsache"],
+    "Feuerwehr": ["Feuerwehrfrau", "Wehrführer", "Drehleiterfahrer", "Kind beim Tag der offenen Tür", "Katze auf dem Baum", "Funkerin", "Nachwuchsfeuerwehr"],
+    "Hochzeit": ["Braut", "Bräutigam", "Trauzeugin", "DJ", "Fotograf", "Blumenkind", "Oma in der ersten Reihe"],
+    "Skihütte": ["Skilehrerin", "Hüttenwirt", "Snowboarder", "Anfängerin", "Liftbetreiber", "Bergretterin", "Kind mit Kakao"],
+    "Museum": ["Museumsführerin", "Wachmann", "Schulklasse", "Künstler", "Restauratorin", "Kind vor dem Dinosaurier", "Kassierer"],
+    "Friseursalon": ["Friseurin", "Kundin mit Lockenwicklern", "Azubi", "Kind beim ersten Haarschnitt", "Mann mit Bart", "Stammkundin", "Chef des Salons"],
+    "U-Boot": ["Kapitän", "Sonarexpertin", "Koch", "Mechanikerin", "Meeresforscher", "Funker", "Neuling an Bord"]
+  }
+}
